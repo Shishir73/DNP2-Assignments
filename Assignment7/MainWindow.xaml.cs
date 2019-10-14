@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -54,8 +55,13 @@ namespace Assignment7
                                 Console.WriteLine("TASK 3 STARTED!");
                                 HeavyWork();
                                 Console.WriteLine("TASK 3 DONE!");
+                            },
+                            () =>
+                            {
+                                Action action = () => label.Content = "Task under work";
                             }
                          );
+
             label.Content += "All Heavy Work has ended " + DateTime.Now.ToLongTimeString() + "!\n";
 
             //await HeavyWorkAsyn();
