@@ -17,23 +17,38 @@ namespace Assignment4
             Order order1 = new Order { Quantity = 2, Product = p1 };
             Order order2 = new Order { Quantity = 2, Product = p2 };
             Order order3 = new Order { Quantity = 2, Product = p3 };
-            Customer customer1 = new Customer { Name = "Kim Foged", City = "Beder", Orders = new Order[] { order1, order2, order3 } };
+            Customer customer1 = new Customer
+            {
+                Name = "Kim Foged",
+                City = "Beder",
+                Orders = new Order[] { order1, order2, order3 }
+            };
 
-            Product p4 = new Product { Name = "Milk", Price = 200 };
-            Product p5 = new Product { Name = "Butter", Price = 200 };
-            Product p6 = new Product { Name = "Bread", Price = 200 };
-            Product p7 = new Product { Name = "Cacao", Price = 200 };
+            Product p4 = new Product { Name = "Butter", Price = 100 };
+            Product p5 = new Product { Name = "Milk", Price = 100 };
+            Product p6 = new Product { Name = "Bread", Price = 100 };
+            Product p7 = new Product { Name = "Cacao", Price = 100 };
 
             Order order4 = new Order { Quantity = 2, Product = p4 };
             Order order5 = new Order { Quantity = 2, Product = p5 };
             Order order6 = new Order { Quantity = 2, Product = p6 };
             Order order7 = new Order { Quantity = 2, Product = p7 };
-            Customer customer2 = new Customer { Name = "Ib Havn", City = "Horsens", Orders = new Order[] { order4, order5, order6, order7 } };
+            Customer customer2 = new Customer
+            {
+                Name = "Ib Havn",
+                City = "Horsens",
+                Orders = new Order[] { order4, order5, order6, order7 }
+            };
 
-            Product p8 = new Product { Name = "Juice", Price = 300 };
+            Product p8 = new Product { Name = "Juice", Price = 100 };
 
             Order order8 = new Order { Quantity = 2, Product = p8 };
-            Customer customer3 = new Customer { Name = "Rasmus Bjerne", City = "Horsens", Orders = new Order[] { order8 } };
+            Customer customer3 = new Customer
+            {
+                Name = "Rasmus Bjerne",
+                City = "Horsens",
+                Orders = new Order[] { order8 }
+            };
 
             #endregion
 
@@ -78,13 +93,14 @@ namespace Assignment4
 
             #region SELECTING ALL THE CUSTOMERS BUYING MILK
             Console.WriteLine("--------------SELECTING ALL CUSTOMER BUYING MILK!!------------");
-            var buyingMilk = from m in customers
-                             where m.Orders[0].Product.Name == "Milk"
-                             select m.Name;
+            var buyingMilk = from c in customers
+                             from o in c.Orders
+                             where o.Product.Name == "Milk"
+                             select c;
 
             foreach (var mil in buyingMilk)
             {
-                Console.WriteLine(mil);
+                Console.WriteLine(mil.Name);
             }
             Console.WriteLine("");
             #endregion
@@ -96,7 +112,9 @@ namespace Assignment4
                       select new
                       {
                           Name = orderGroup.Key,
-                          TotalPrice = orderGroup.Sum(s =>s.Orders[0].Product.Price)
+                          Sum = (from g in orderGroup
+                                        from o in g.Orders
+                                        select o.Product.Price).Sum()
                       };
 
             foreach (var allItem in sum)
@@ -110,10 +128,11 @@ namespace Assignment4
             #region TOTAL SUM OF ALL PRODUCTS IN ORDER
             Console.WriteLine("--------------SELECTING TOTAL SUM OF ALL PRODUCTS IN ORDER!!------------");
             var sumAll = (from s in customers
-                          where s.Orders[0].Product.Price > 0
-                          select s.Orders[0].Product.Price).Sum();
+                          from o in s.Orders
+                          select o.Product.Price).Sum();
+
             Console.WriteLine(sumAll);
-            
+
             Console.WriteLine("");
             #endregion
 
