@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Assignment5"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="425" Width="462">
     <Grid>
 
-        <Label FontSize="15" Margin="20,30,635,350">
+        <Label FontSize="15" Margin="10,10,300,350">
             Multimedia Item :
         </Label>
 
-        <ListBox Name="listsB" FontSize="15" Margin="170,30,340,200" ItemsSource="{Binding}" DisplayMemberPath="_title">
+        <ListBox Name="listsB" FontSize="15" Margin="140,10,10,100" ItemsSource="{Binding}" DisplayMemberPath="_title" SelectionChanged="ListsB_SelectionChanged">
         </ListBox>
+        <Button x:Name="add_button" Content="Add Titles" HorizontalAlignment="Left" Margin="177,334,0,0" VerticalAlignment="Top" Width="77" Height="25" Click="Add_button_Click" />
 
 
     </Grid>
