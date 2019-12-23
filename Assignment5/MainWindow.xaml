@@ -12,9 +12,13 @@
             Multimedia Item :
         </Label>
 
-        <ListBox Name="listsB" FontSize="15" Margin="140,10,10,100" ItemsSource="{Binding}" DisplayMemberPath="_title" SelectionChanged="ListsB_SelectionChanged">
+        <ListBox Name="listsB" FontSize="15" Margin="140,10,10,100" 
+                 ItemsSource="{Binding Path=Title, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
+                 DisplayMemberPath="Title" SelectionChanged="ViewDetailsOFSongs">
         </ListBox>
-        <Button x:Name="add_button" Content="Add Titles" HorizontalAlignment="Left" Margin="177,334,0,0" VerticalAlignment="Top" Width="77" Height="25" Click="Add_button_Click" />
+
+        <Button x:Name="add_button" Content="Add Titles" HorizontalAlignment="Left" Margin="177,334,0,0" 
+                VerticalAlignment="Top" Width="77" Height="25" Click="Add_button_Click" />
 
 
     </Grid>

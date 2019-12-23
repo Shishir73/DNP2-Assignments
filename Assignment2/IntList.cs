@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Assignment2
 {
@@ -33,7 +29,8 @@ namespace Assignment2
         {
             IntList res = new IntList();
             foreach (int i in this)
-                if (p(i)) res.Add(i);
+                if (p(i))
+                    res.Add(i);
             return res;
         }
 
@@ -41,7 +38,8 @@ namespace Assignment2
         {
             IntList res = new IntList();
             foreach (int i in this)
-                if (p(i)) res.Add(i);
+                if (p(i))
+                    res.Add(i);
             return res;
         }
     }

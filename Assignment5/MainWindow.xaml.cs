@@ -16,26 +16,26 @@ namespace Assignment5
         {
             InitializeComponent();
             items = new List<Multimedia>();
-            items.Add(new Multimedia() { _title = "Manche Ko Jeewan", _artist = "1974", _genre = "Rhythm and Blues", _type = Multimedia.MediaType.CD });
-            items.Add(new Multimedia(){ _title = "Hollywoods Bleeding", _artist = "Post Malone", _genre = "R&B", _type = Multimedia.MediaType.DVD});
-            items.Add(new Multimedia() { _title = "Maya Bisaune", _artist = "1974", _genre = "Instrumental", _type = Multimedia.MediaType.CD });
-            items.Add(new Multimedia() { _title = "Old Town Road", _artist = "Lil Nas X ft. Bill", _genre = "Musical", _type = Multimedia.MediaType.DVD });
-            items.Add(new Multimedia() { _title = "Looking for America", _artist = "Lana Del Rey", _genre = "Jazz", _type = Multimedia.MediaType.CD });
-            items.Add(new Multimedia() { _title = "Jiuna Deu", _artist = "1974", _genre = "Blues", _type = Multimedia.MediaType.DVD });
-            items.Add(new Multimedia() { _title = "I Can't Get Enough", _artist = "Benny, Selena Gomex", _genre = "Pop", _type = Multimedia.MediaType.CD });
-            items.Add(new Multimedia() { _title = "Goodbye", _artist = "Post Malone", _genre = "Rap", _type = Multimedia.MediaType.DVD });
+            items.Add(new Multimedia() { Title = "Manche Ko Jeewan", Artist = "1974", Genre = "Rhythm and Blues", Type = Multimedia.MediaType.CD });
+            items.Add(new Multimedia(){ Title = "Hollywoods Bleeding", Artist = "Post Malone", Genre = "R&B", Type = Multimedia.MediaType.DVD});
+            items.Add(new Multimedia() { Title = "Maya Bisaune", Artist = "1974", Genre = "Instrumental", Type = Multimedia.MediaType.CD });
+            items.Add(new Multimedia() { Title = "Old Town Road", Artist = "Lil Nas X ft. Bill", Genre = "Musical", Type = Multimedia.MediaType.DVD });
+            items.Add(new Multimedia() { Title = "Looking for America", Artist = "Lana Del Rey", Genre = "Jazz", Type = Multimedia.MediaType.CD });
+            items.Add(new Multimedia() { Title = "Jiuna Deu", Artist = "1974", Genre = "Blues", Type = Multimedia.MediaType.DVD });
+            items.Add(new Multimedia() { Title = "I Can't Get Enough", Artist = "Benny, Selena Gomex", Genre = "Pop", Type = Multimedia.MediaType.CD });
+            items.Add(new Multimedia() { Title = "Goodbye", Artist = "Post Malone", Genre = "Rap", Type = Multimedia.MediaType.DVD });
 
             listsB.ItemsSource = items;
-            //updateUI();
+            //DataContext = items;
         }
 
-        private void ListsB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ViewDetailsOFSongs(object sender, SelectionChangedEventArgs e)
         {
             index = listsB.SelectedIndex;
-            MessageBox.Show("Title : " + items[index]._title + "\n" 
-                + "Artist : " + items[index]._artist + "\n" 
-                + "Genre : " + items[index]._genre + "\n" 
-                + "MediaType : " + items[index]._type);
+            MessageBox.Show("Title : " + items[index].Title + "\n" 
+                + "Artist : " + items[index].Artist + "\n" 
+                + "Genre : " + items[index].Genre + "\n" 
+                + "MediaType : " + items[index].Type);
         }
 
         private void Add_button_Click(object sender, RoutedEventArgs e)

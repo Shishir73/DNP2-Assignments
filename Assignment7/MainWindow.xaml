@@ -9,9 +9,9 @@
     <Grid Margin="0,0,2,21">
         <ScrollViewer Margin="0,0,0,25">
             <Label x:Name="label" Content="" HorizontalAlignment="Left" Margin="10,24,0,150" Width="404" />
-            </ScrollViewer>
-            
-                <Button x:Name="button" Content="Run" HorizontalAlignment="Left" Margin="281,281,0,0" VerticalAlignment="Top" Width="104" Height="40" Click="Button_Click"/>
+        </ScrollViewer>
+        <Button x:Name="button" Content="Run" HorizontalAlignment="Left" Margin="281,281,0,0" 
+                VerticalAlignment="Top" Width="104" Height="40" Click="Button_Click"/>
 
     </Grid>
 </Window>

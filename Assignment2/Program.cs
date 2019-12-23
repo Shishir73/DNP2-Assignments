@@ -6,15 +6,19 @@ namespace Assignment2
     {
         static void Main(string[] args)
         {
-            IntList ls = new IntList();
-            ls.Add(11); ls.Add(20); ls.Add(31); ls.Add(40);
-            ls.Add(51); ls.Add(71); ls.Add(80); ls.Add(91);
+            IntList xs = new IntList();
+            xs.Add(11); xs.Add(20); xs.Add(31); xs.Add(40);
+            xs.Add(51); xs.Add(71); xs.Add(80); xs.Add(91);
 
-            ls.Act(Console.WriteLine);
+            xs.Act(Console.WriteLine);
             Console.WriteLine(" ");
-            ls.Filter(delegate (int x) { return x % 2 == 0; }).Act(Console.WriteLine);
+
+            Console.WriteLine("Elements divisible by 2. ");
+            xs.Filter(delegate (int x) { return x % 2 == 0; }).Act(Console.WriteLine);
+
             Console.WriteLine(" ");
-            ls.Filter(y => y > 25).Act(Console.WriteLine);
+            Console.WriteLine("Elements greater than 25. ");
+            xs.Filter(y => y > 25).Act(Console.WriteLine);
 
             Console.ReadKey();
         }

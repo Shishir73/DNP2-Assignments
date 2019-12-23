@@ -16,17 +16,18 @@ namespace Assignment5
 
         private void Button_done_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.items.Add(new Multimedia() {
-                _title = textBox_title.Text,
-                _artist = textBox_artist.Text,
-                _genre = textBox_genre.Text,
-                _type = (Multimedia.MediaType) comboBox.SelectedValue
+            MainWindow.items.Add(new Multimedia()
+            {
+                Title = textBox_title.Text,
+                Artist = textBox_artist.Text,
+                Genre = textBox_genre.Text,
+                Type = (Multimedia.MediaType)comboBox.SelectedValue
             });
 
             //mww.listsB.ItemsSource = MainWindow.items;
+            //Application.Current.MainWindow
 
             updatedata();
-
         }
 
         private void updatedata()
