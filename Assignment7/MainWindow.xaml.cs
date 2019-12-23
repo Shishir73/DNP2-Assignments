@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace Assignment7
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
             InitializeComponent();
@@ -27,54 +23,33 @@ namespace Assignment7
             System.Threading.Thread.Sleep(TimeSpan.FromSeconds(secondsToSleep));
         }
 
-        public Task HeavyWorkAsyn()
+        public Task HeavyWorkAsync()
         {
             //run HeavyWork asynchronously
             return Task.Run(() => HeavyWork());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             label.Content += "Heavy Work has started at " + DateTime.Now.ToLongTimeString() + "! \n";
 
-            Parallel.Invoke(
-                            () =>
-                            {
-                                Console.WriteLine("TASK 1 STARTED!");
-                                HeavyWork();
-                                Console.WriteLine("TASK 1 DONE!");
-                            },
-                            () =>
-                            {
-                                Console.WriteLine("TASK 2 STARTED!");
-                                HeavyWork();
-                                Console.WriteLine("TASK 2 DONE!");
-                            },
-                            () =>
-                            {
-                                Console.WriteLine("TASK 3 STARTED!");
-                                HeavyWork();
-                                Console.WriteLine("TASK 3 DONE!");
-                            },
-                            () =>
-                            {
-                                Action action = () => label.Content = "Task under work";
-                            }
-                         );
+            Task delay = Task.Delay(8000);
+            Task task1 = HeavyWorkAsync();
+            Task task2 = HeavyWorkAsync();
+            Task task3 = HeavyWorkAsync();
+            Task allTasks = Task.WhenAll(task1, task2, task3);
+
+            Task completed = await Task.WhenAny(allTasks, delay);
+
+            if (allTasks != completed)
+            {
+                label.Content += "The tasks are still in progress \n";
+
+                await Task.WhenAll(allTasks);
+            }
 
             label.Content += "All Heavy Work has ended " + DateTime.Now.ToLongTimeString() + "!\n";
-
-            //await HeavyWorkAsyn();
-
-
             label.Content += "\n";
-
         }
-
-        #region PARALLEL EXECUTION
-            //All the task start at the same time as they are been exected at parallelly. 
-            //They end at different time because their is a random number of sleep for the heavywork().
-            //Output can been seen in the output console.
-        #endregion
     }
 }
